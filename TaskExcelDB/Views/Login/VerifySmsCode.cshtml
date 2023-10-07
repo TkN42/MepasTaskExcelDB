@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>SMS Kodu Doğrulama</title>
+    <!-- SweetAlert2 için gerekli CSS ve JS dosyaları -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
+</head>
+<body>
+    <h2>SMS Kodu Doğrulama</h2>
+
+    <div id="countdown">Süre: <span id="timer">10</span> saniye</div>
+    <div>100 saniye olacak normalde ama çalıştığını görmek için 10 saniyeye ayarlandı.</div>
+
+    <form asp-controller="login" asp-action="VerifySmsCode" method="post">
+        <div class="form-group">
+            <label for="smsCode">SMS Kodu:</label>
+            <input type="text" id="smsCode" name="smsCode" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Doğrula</button>
+    </form>
+
+    <script>
+        // Süre başlangıcı
+        var timer = 10; // Saniye cinsinden süre
+        var countdown = document.getElementById('timer');
+        var interval;
+
+        function startTimer() {
+            interval = setInterval(function () {
+                countdown.innerHTML = timer ;
+                timer--;
+
+                if (timer < 0) {
+                    clearInterval(interval);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Süre Doldu',
+                        text: 'Süre doldu, lütfen tekrar giriş yapın.'
+                    }).then(function () {
+                        // Süre dolduğunda kullanıcıyı login sayfasına yönlendirilir
+                        window.location.href = "/Login/Index";
+                    });
+                }
+            }, 1000); // 1 saniyede bir güncelleme yap
+        }
+
+        // Sayfa yüklendiğinde süreyi başlat
+        startTimer();
+
+        // Form submit işlemi
+        document.querySelector('form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // SMS kodu doğrulama işlemi burada yapılabilir
+            var smsCode = document.getElementById('smsCode').value;
+
+            // Örnek: SMS kodu "1111" ise doğru kabul ediyorum
+            if (smsCode === '1111') {
+                clearInterval(interval); // Süreyi durdur
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Başarılı',
+                    text: 'SMS kodu doğrulandı!'
+                }).then(function () {
+                    // Doğru kod girildiğinde yönlendirilecek sayfa
+                    window.location.href = "/Home/Index";
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata',
+                    text: 'SMS kodu yanlış, lütfen tekrar deneyin.'
+                });
+            }
+        });
+    </script>
+</body>
+</html>

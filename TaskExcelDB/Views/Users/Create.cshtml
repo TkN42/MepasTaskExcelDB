@@ -1,0 +1,31 @@
+﻿@model TaskExcelDB.Models.Users
+
+<h1>Yeni User Ekle</h1>
+
+<form asp-controller="Users" asp-action="Create">
+    <div class="form-group">
+        <label asp-for="name">Adı:</label>
+        <input asp-for="name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="surname">Soyadı:</label>
+        <input asp-for="surname" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="username">Kullanıcı Adı:</label>
+        <input asp-for="username" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="password">Parola:</label>
+        <input asp-for="password" class="form-control" />
+    </div>
+   @* <div class="form-group">
+        <label asp-for="status">Dueum:</label>
+        <input asp-for="status" class="form-control" />
+    </div>*@
+    <div class="form-group">
+        <input type="submit" value="Kaydet" class="btn btn-primary" />
+    </div>
+</form>
+
+<a asp-controller="Users" asp-action="Index">Geri dön</a>

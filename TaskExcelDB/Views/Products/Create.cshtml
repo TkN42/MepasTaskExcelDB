@@ -1,0 +1,110 @@
+﻿@model TaskExcelDB.Models.Products
+
+<h1>Yeni Ürün Ekle</h1>
+
+<form asp-controller="Products" asp-action="Create" onsubmit="return validateForm()">
+    <div class="form-group">
+        <label asp-for="name">Adı:</label>
+        <input asp-for="name" class="form-control" id="name" />
+        <span asp-validation-for="name" class="text-danger"></span>
+    </div>
+
+    @*<div class="form-group">
+    <label asp-for="category_id">Kategori ID:</label>
+    <input asp-for="category_id" class="form-control" />
+    </div>*@
+
+    <div class="form-group">
+        <label for="category_id">Kategori:</label>
+        <select id="category_id" name="category_id" class="form-control">
+            @foreach (var category in ViewBag.Categories)
+            {
+                <option value="@category.id">@category.name</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="price">Fiyat:</label>
+        <input asp-for="price" class="form-control" id="price"/>
+        <span asp-validation-for="price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="unit">Birim:</label>
+        <input asp-for="unit" class="form-control" id="unit" />
+        <span asp-validation-for="unit" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="stock">Stok:</label>
+        <input asp-for="stock" class="form-control" id="stock" />
+        <span asp-validation-for="stock" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="color">Renk:</label>
+        <input asp-for="color" class="form-control" id="color" />
+        <span asp-validation-for="stock" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="weight">Ağırlık:</label>
+        <input asp-for="weight" class="form-control" id="weight" />
+        <span asp-validation-for="weight" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="width">Genişlik:</label>
+        <input asp-for="width" class="form-control" id="width" />
+        <span asp-validation-for="width" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="height">Yükseklik:</label>
+        <input asp-for="height" class="form-control" id="height" />
+        <span asp-validation-for="height" class="text-danger"></span>
+    </div>
+    @* <div class="form-group">
+    <label asp-for="added_user_id">Ekleyen Kullanıcı ID:</label>
+    <input asp-for="added_user_id" class="form-control" />
+    </div>
+    <div class="form-group">
+    <label asp-for="updated_user_id">Güncelleyen Kullanıcı ID:</label>
+    <input asp-for="updated_user_id" class="form-control" />
+    </div>
+    <div class="form-group">
+    <label asp-for="created_date">Oluşturma Tarihi:</label>
+    <input asp-for="created_date" class="form-control" />
+    </div>
+    <div class="form-group">
+    <label asp-for="updated_date">Güncelleme Tarihi:</label>
+    <input asp-for="updated_date" class="form-control" />
+    </div>*@
+    <div class="form-group">
+        @*<input type="submit" value="Kaydet" class="btn btn-primary" />*@
+        <input type="submit" value="Kaydet" class="btn btn-primary" onclick="return validateForm();" />
+
+    </div>
+</form>
+
+<a asp-controller="Products" asp-action="Index">Geri dön</a>
+
+<script src="~/js/productValidation.js"></script>
+
+@*<script>
+    function validateForm() {
+        var name = document.getElementById('name').value;
+        var category_id = document.getElementById('category_id').value;
+        var price = document.getElementById('price').value;
+        var unit = document.getElementById('unit').value;
+        var stock = document.getElementById('stock').value;
+        var color = document.getElementById('color').value;
+        var weight = document.getElementById('weight').value;
+        var width = document.getElementById('width').value;
+        var height = document.getElementById('height').value;
+
+        if (!name || !category_id || !price || !unit || !stock || !color || !weight || !width || !height) {
+            alert('Tüm alanları doldurun.');
+            return false; // Form gönderme işlemi durdurulacak.
+        }
+
+        // Diğer özel kontrolleri yapabilirsiniz.
+
+        return true; // Form gönderme işlemi devam edecek.
+    }
+</script>*@

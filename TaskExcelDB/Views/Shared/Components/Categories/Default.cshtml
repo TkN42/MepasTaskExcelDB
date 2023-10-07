@@ -1,0 +1,31 @@
+﻿@model IEnumerable<TaskExcelDB.Models.Categories>
+
+<h1>Kategori Listesi</h1>
+
+<p>
+    <a asp-controller="Categories" asp-action="Create">Yeni Kategori Ekle</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Adı</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var categori in Model)
+        {
+            <tr>
+                <td>@categori.id</td>
+                <td>@categori.name</td>
+                <td>
+                    <a asp-controller="Categories" asp-action="Edit" asp-route-id="@categori.id">Düzenle</a> |
+                    <a asp-controller="Categories" asp-action="Details" asp-route-id="@categori.id">Detaylar</a> |
+                    <a asp-controller="Categories" asp-action="Delete" asp-route-id="@categori.id">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

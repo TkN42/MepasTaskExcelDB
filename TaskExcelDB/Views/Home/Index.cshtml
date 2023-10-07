@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<h2>Hoş Geldiniz! @ViewBag.username</h2>
+
+<p>
+    <a asp-controller="Products" asp-action="Index" class="btn btn-primary">Ürün Listesine Git</a>
+</p>
+
+<p>
+    <a asp-controller="Users" asp-action="Index" class="btn btn-primary">Kullanıcı Listesine Git</a>
+</p>
+
+<p>
+    <a asp-controller="Categories" asp-action="Index" class="btn btn-primary">Categori Listesine Git</a>
+</p>
+
+<form asp-controller="Login" asp-action="Logout" method="post">
+    <button type="submit" class="btn btn-primary">Çıkış Yap</button>
+</form>

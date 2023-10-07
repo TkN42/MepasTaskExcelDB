@@ -1,0 +1,15 @@
+﻿@model TaskExcelDB.Models.Categories
+
+<h2>Categori Detayları</h2>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <td>@Model.id</td>
+    </tr>
+    <tr>
+        <th>Ürün Adı</th>
+        <td>@Model.name</td>
+    </tr>
+</table>
+
+<a asp-controller="Categories" asp-action="Index" class="btn btn-primary">Geri Dön</a>

@@ -1,0 +1,57 @@
+﻿@model TaskExcelDB.Models.Users
+
+<h2>Giriş Yap</h2>
+
+<form id="loginForm">
+    <div class="form-group">
+        <label asp-for="username"></label>
+        <input asp-for="username" class="form-control" />
+        <span asp-validation-for="username" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="password"></label>
+        <input asp-for="password" type="password" class="form-control" />
+        <span asp-validation-for="password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Giriş Yap</button>
+    </div>
+</form>
+
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var form = this;
+
+        // Form verilerini AJAX ile gönder
+        $.ajax({
+            url: '@Url.Action("Index", "Login")',
+            type: 'POST',
+            data: $(form).serialize(),
+            success: function (response) {
+                if (response.success) {
+                    // Başarılı giriş, yönlendir
+                    window.location.href = response.redirectUrl;
+                } else {
+                    // Hata mesajlarını SweetAlert2 ile göster
+                    var errorMessages = response.errors.join('<br>');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hata',
+                        html: errorMessages
+                    });
+                }
+            },
+            error: function () {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata',
+                    text: 'Bir hata oluştu. Lütfen tekrar deneyin.'
+                });
+            }
+        });
+    });
+</script>

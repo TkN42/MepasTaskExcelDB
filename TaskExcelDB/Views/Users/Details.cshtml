@@ -1,0 +1,32 @@
+﻿@model TaskExcelDB.Models.Users
+
+<h2>User Detayları</h2>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <td>@Model.id</td>
+    </tr>
+    <tr>
+        <th>Adı</th>
+        <td>@Model.name</td>
+    </tr>
+    <tr>
+        <th>Soyadı</th>
+        <td>@Model.surname</td>
+    </tr>
+    <tr>
+        <th>Kullanıcı Adı</th>
+        <td>@Model.username</td>
+    </tr>
+    <tr>
+        <th>Parola</th>
+        <td>@Model.password</td>
+    </tr>
+    <tr>
+        <th>Durum</th>
+        <td>@Model.status</td>
+    </tr>
+    
+</table>
+
+<a asp-controller="Users" asp-action="Index" class="btn btn-primary">Geri Dön</a>

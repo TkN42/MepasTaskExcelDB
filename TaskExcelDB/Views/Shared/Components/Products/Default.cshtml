@@ -1,0 +1,66 @@
+﻿@model IEnumerable<TaskExcelDB.Models.Products>
+
+<h1>Ürün Listesi</h1>
+
+<p>
+    <a asp-controller="Products" asp-action="Create">Yeni Ürün Ekle</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Adı</th>
+            <th>Kategori ID</th>
+            <th>Fiyat</th>
+            <th>Birim</th>
+            <th>Stok</th>
+            <th>Renk</th>
+            <th>Ağırlık</th>
+            <th>Genişlik</th>
+            <th>Yükseklik</th>
+            <th>Ekleyen Kullanıcı ID</th>
+            <th>Güncelleyen Kullanıcı ID</th>
+            <th>Oluşturma Tarihi</th>
+            <th>Güncelleme Tarihi</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.id</td>
+                <td>@product.name</td>
+                <td>@product.category_id</td>
+                <td>@product.price</td>
+                <td>@product.unit</td>
+                <td>@product.stock</td>
+                <td>@product.color</td>
+                <td>@product.weight</td>
+                <td>@product.width</td>
+                <td>@product.height</td>
+                <td>@product.added_user_id</td>
+                <td>@product.updated_user_id</td>
+                <td>@product.created_date.ToShortDateString()</td>
+
+                @if (@product.updated_date != null)
+                {
+                    <td>@product.updated_date.Value.ToShortDateString()</td>
+                }
+                else
+                {
+                    <td></td>
+                }
+
+                @*<td>@product.updated_date.ToShortDateString()</td>*@
+
+                <td>
+                    <a asp-controller="Products" asp-action="Edit" asp-route-id="@product.id">Düzenle</a> |
+                    <a asp-controller="Products" asp-action="Details" asp-route-id="@product.id">Detaylar</a> |
+                    <a asp-controller="Products" asp-action="Delete" asp-route-id="@product.id">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

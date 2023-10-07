@@ -1,0 +1,63 @@
+﻿@model TaskExcelDB.Models.Products
+
+<h2>Ürün Detayları</h2>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <td>@Model.id</td>
+    </tr>
+    <tr>
+        <th>Ürün Adı</th>
+        <td>@Model.name</td>
+    </tr>
+    <tr>
+        <th>Kategori ID</th>
+        <td>@Model.category_id</td>
+    </tr>
+    <tr>
+        <th>Fiyat</th>
+        <td>@Model.price</td>
+    </tr>
+    <tr>
+        <th>Birim</th>
+        <td>@Model.unit</td>
+    </tr>
+    <tr>
+        <th>Stok</th>
+        <td>@Model.stock</td>
+    </tr>
+    <tr>
+        <th>Renk</th>
+        <td>@Model.color</td>
+    </tr>
+    <tr>
+        <th>Ağırlık</th>
+        <td>@Model.weight</td>
+    </tr>
+    <tr>
+        <th>Genişlik</th>
+        <td>@Model.width</td>
+    </tr>
+    <tr>
+        <th>Yükseklik</th>
+        <td>@Model.height</td>
+    </tr>
+    <tr>
+        <th>Ekleyen Kullanıcı ID</th>
+        <td>@Model.added_user_id</td>
+    </tr>
+    <tr>
+        <th>Güncelleyen Kullanıcı ID</th>
+        <td>@Model.updated_user_id</td>
+    </tr>
+    <tr>
+        <th>Oluşturulma Tarihi</th>
+        <td>@Model.created_date</td>
+    </tr>
+    <tr>
+        <th>Güncelleme Tarihi</th>
+        <td>@Model.updated_date</td>
+    </tr>
+</table>
+
+<a asp-controller="Products" asp-action="Index" class="btn btn-primary">Geri Dön</a>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TaskExcelDB.Models.Users>
+
+<h1>Kullanıcı Listesi</h1>
+
+<p>
+    <a asp-controller="Users" asp-action="Create">Yeni Kullanıcı Ekle</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Adı</th>
+            <th>Soyadı</th>
+            <th>Kullanıcı Adı</th>
+            <th>Şifre</th>
+            <th>Durum</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.id</td>
+                <td>@user.name</td>
+                <td>@user.surname</td>
+                <td>@user.username</td>
+                <td>@user.password</td>
+                <td>@user.status</td>
+                <td>
+                    <a asp-controller="Users" asp-action="Edit" asp-route-id="@user.id">Düzenle</a> |
+                    <a asp-controller="Users" asp-action="Details" asp-route-id="@user.id">Detaylar</a> |
+                    <a asp-controller="Users" asp-action="Delete" asp-route-id="@user.id">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
